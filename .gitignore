@@ -1,0 +1,12 @@
+packages/
+Data/Store/bin/
+Services/DownloadManager/obj/
+Services/SyncService/obj/
+Services/SyncService/bin/
+Services/Temperature/bin/
+Services/Temperature/obj/
+Core/Model/obj/
+Services/DownloadManager/bin/
+Data/Store/obj/
+Web/Client/obj/
+Web/Client/bin/

@@ -1,0 +1,40 @@
+﻿@model Web.Client.ViewModels.IndexViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+    var start = Model.Period?.Start;
+    var end = Model.Period?.End;
+}
+<h3>Температура за период</h3>
+<div class="row">
+    @using (Ajax.BeginForm("GetTemperature", new AjaxOptions
+    {
+        HttpMethod = "GET",
+        UpdateTargetId = "temperature-block",
+        InsertionMode = InsertionMode.Replace
+    }))
+    {
+        <div>
+            @Html.EditorFor(m => start)
+            <span> - </span>
+            @Html.EditorFor(m => end)
+            <button type="submit">Обновить график</button>
+        </div>
+    }
+</div>
+
+<div id="temperature-block">
+
+</div>
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/kendo-ui-configure")
+    <script>
+        initPeriod("@Html.IdFor(m => start)", "@Html.IdFor(m => end)")
+    </script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>google.charts.load('current', { 'packages': ['corechart'] });</script>
+}
