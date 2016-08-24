@@ -83,12 +83,14 @@ namespace Services.SyncService
 
                     if (httpDownload.IsPagePresent())
                     {
-                        var items = httpDownload.DownloadTemperature();
-                        Trace.TraceInformation($"Found {items.Count()} temperatures information. ");
-                        if (items.Any())
+                        var device = httpDownload.DownloadTemperature();
+                        Trace.TraceInformation($"Device name {device.Name}. Found {device.Temperatures.Count()} temperatures information. ");
+                        if (device.Temperatures.Any())
                         {
-                            Trace.TraceInformation($"Start add {items.Count()} items temperatures information to database. ");
-                            Task task = provider.AddTemperatures(items);
+                            Trace.TraceInformation($"Start add {device.Temperatures.Count()} items temperatures information to database. ");
+                            var deviceId = await provider.AddDeviceIfNotExist(device);
+
+                            Task task = provider.AddTemperatures(deviceId, device.Temperatures);
                         }
                     }
                     else

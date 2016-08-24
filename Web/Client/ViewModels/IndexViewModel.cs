@@ -4,8 +4,14 @@ namespace Web.Client.ViewModels
 {
     public class IndexViewModel
     {
-        public PeriodViewModel Period { get; set; }
+        public FilterViewModel Filter { get; set; }
 
         public List<TemperatureViewModel> Temperatures { get; set; }
+
+        public IndexViewModel()
+        {
+            Filter = new FilterViewModel();
+            Temperatures = new List<TemperatureViewModel>();
+        }
     }
 }

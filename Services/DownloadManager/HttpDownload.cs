@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json;
+using Services.DownloadManager.Models;
 using Services.Temperature.DTO;
 
 namespace Services.DownloadManager
@@ -47,7 +48,7 @@ namespace Services.DownloadManager
             return _response.StatusCode == HttpStatusCode.OK;
         }
 
-        public IEnumerable<TemperatureDTO> DownloadTemperature()
+        public DeviceDTO DownloadTemperature()
         {
             string responseResult;
 
@@ -65,8 +66,8 @@ namespace Services.DownloadManager
                 DateFormatString = _dateTimeFormat
             };
 
-            var items = JsonConvert.DeserializeObject<List<Models.TemperatureJson>>(responseResult, settings);
-            return items.Select(m => new TemperatureDTO(m)).ToList();
+            var device = JsonConvert.DeserializeObject<DeviceJson>(responseResult, settings);
+            return new DeviceDTO(device) {Temperatures = device.Temperatures};
         }
 
         public void Dispose()

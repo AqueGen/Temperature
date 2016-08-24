@@ -1,12 +1,16 @@
 ﻿using System;
 using Core.Model.Interfaces;
+using Newtonsoft.Json;
 
 namespace Core.Model
 {
     public abstract class BaseTemperature : ITemperature
     {
-        public abstract DateTime Date { get; set; }
-        public abstract double Value { get; set; }
+        [JsonProperty("date")]
+        public DateTime Date { get; set; }
+
+        [JsonProperty("value")]
+        public double Value { get; set; }
 
 
         protected BaseTemperature()

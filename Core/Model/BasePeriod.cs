@@ -5,9 +5,9 @@ namespace Core.Model
 {
     public abstract class BasePeriod : IPeriod
     {
-        public abstract DateTime? Start { get; set; }
+        public DateTime? Start { get; set; }
 
-        public abstract DateTime? End { get; set; }
+        public DateTime? End { get; set; }
 
         protected BasePeriod()
         {

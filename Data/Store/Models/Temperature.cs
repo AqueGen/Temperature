@@ -8,8 +8,8 @@ namespace Data.Store.Models
     {
         public int Id { get; set; }
 
-        public override DateTime Date { get; set; }
-        public override double Value { get; set; }
+        public int DeviceId { get; set; }
+        public virtual Device Device{ get; set;}
 
         public Temperature() : base()
         {

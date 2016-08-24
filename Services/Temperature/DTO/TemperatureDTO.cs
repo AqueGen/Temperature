@@ -6,9 +6,6 @@ namespace Services.Temperature.DTO
 {
     public class TemperatureDTO : BaseTemperature
     {
-        public override DateTime Date { get; set; }
-        public override double Value { get; set; }
-
         public TemperatureDTO() : base()
         {
         }

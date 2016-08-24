@@ -1,14 +1,18 @@
 ﻿using System;
 using Core.Model;
+using Core.Model.Interfaces;
 using Newtonsoft.Json;
 
 namespace Services.DownloadManager.Models
 {
     public class TemperatureJson : BaseTemperature
     {
-        [JsonProperty("date")]
-        public override DateTime Date { get; set; }
-        [JsonProperty("value")]
-        public override double Value { get; set; }
+        protected TemperatureJson()
+        {
+        }
+
+        protected TemperatureJson(ITemperature temperature) : base(temperature)
+        {
+        }
     }
 }

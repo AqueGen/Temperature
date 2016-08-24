@@ -150,11 +150,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201608241126516_InitialCreate.cs" />
-    <Compile Include="Migrations\201608241126516_InitialCreate.Designer.cs">
-      <DependentUpon>201608241126516_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201608241459048_InitialCreate.cs" />
+    <Compile Include="Migrations\201608241459048_InitialCreate.Designer.cs">
+      <DependentUpon>201608241459048_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608241715306_AddGuidForDevice.cs" />
+    <Compile Include="Migrations\201608241715306_AddGuidForDevice.Designer.cs">
+      <DependentUpon>201608241715306_AddGuidForDevice.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Device.cs" />
     <Compile Include="Models\Temperature.cs" />
     <Compile Include="StoreContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -170,8 +175,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608241126516_InitialCreate.resx">
-      <DependentUpon>201608241126516_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608241459048_InitialCreate.resx">
+      <DependentUpon>201608241459048_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608241715306_AddGuidForDevice.resx">
+      <DependentUpon>201608241715306_AddGuidForDevice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

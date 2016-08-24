@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Globalization;
@@ -7,12 +8,20 @@ using Services.Temperature.DTO;
 
 namespace Web.Client.ViewModels
 {
-    [ModelBinder(typeof(PeriodModelBinder))]
-    public class PeriodViewModel
+    [ModelBinder(typeof(FilterModelBinder))]
+    public class FilterViewModel
     {
+        public Guid DeviceGuid { get; set; }
+        public List<DeviceViewModel> Devices { get; set; }
+
         public DateTime? Start { get; set; }
 
         public DateTime? End { get; set; }
+
+        public FilterViewModel()
+        {
+            Devices = new List<DeviceViewModel>();
+        }
 
         public PeriodDTO ToDTO()
         {
@@ -24,7 +33,7 @@ namespace Web.Client.ViewModels
         }
     }
 
-    public class PeriodModelBinder : IModelBinder
+    public class FilterModelBinder : IModelBinder
     {
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
@@ -32,10 +41,23 @@ namespace Web.Client.ViewModels
                 ? controllerContext.HttpContext.Request.QueryString
                 : controllerContext.HttpContext.Request.Form;
 
-            PeriodViewModel viewModel = new PeriodViewModel();
+            FilterViewModel viewModel = new FilterViewModel();
 
             var start = request.Get(nameof(viewModel.Start));
             var end = request.Get(nameof(viewModel.End));
+            var guid = request.Get(nameof(viewModel.DeviceGuid));
+            if (!string.IsNullOrWhiteSpace(guid))
+            {
+                try
+                {
+                    viewModel.DeviceGuid = new Guid(guid);
+                }
+                catch (OverflowException ex)
+                {
+                    Trace.TraceError($"Overflow exception. {ex}");
+                }
+            }
+         
 
             var dateTimeFormat = "dd-MM-yyyy hh:mm";
             try

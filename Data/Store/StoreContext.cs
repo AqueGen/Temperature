@@ -8,6 +8,7 @@ namespace Data.Store
     public class StoreContext : DbContext
     {
         public DbSet<Temperature> Temperatures { get; set; }
+        public DbSet<Device> Devices { get; set; }
 
         public StoreContext() : base("StoreContext")
         {
@@ -19,6 +20,11 @@ namespace Data.Store
             temperature.HasKey(m => m.Id);
             temperature.Property(m => m.Date)
                 .HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute()));
+
+            var device = modelBuilder.Entity<Device>();
+            device.HasKey(m => m.Id);
+
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Model.Interfaces;
 using Services.Temperature.DTO;
 
 namespace Web.Client.ViewModels
@@ -12,10 +13,10 @@ namespace Web.Client.ViewModels
         {
         }
 
-        public TemperatureViewModel(TemperatureDTO temperatureDTO)
+        public TemperatureViewModel(ITemperature temperature)
         {
-            Date = temperatureDTO.Date;
-            Value = temperatureDTO.Value;
+            Date = temperature.Date;
+            Value = temperature.Value;
         }
     }
 }

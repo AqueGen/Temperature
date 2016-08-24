@@ -2,8 +2,9 @@
 
 @{
     ViewBag.Title = "Home Page";
-    var start = Model.Period?.Start;
-    var end = Model.Period?.End;
+    var start = Model.Filter?.Start;
+    var end = Model.Filter?.End;
+    var deviceGuid = Model.Filter?.DeviceGuid;
 }
 <h3>Температура за период</h3>
 <div class="row">
@@ -18,6 +19,7 @@
             @Html.EditorFor(m => start)
             <span> - </span>
             @Html.EditorFor(m => end)
+            @Html.DropDownListFor(m => deviceGuid, new List<SelectListItem>(Model?.Filter?.Devices?.Select(m => new SelectListItem {Text = m.Name, Value = m.Guid.ToString()})))
             <button type="submit">Обновить график</button>
         </div>
     }

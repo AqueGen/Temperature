@@ -6,10 +6,6 @@ namespace Services.Temperature.DTO
 {
     public class PeriodDTO : BasePeriod
     {
-        public override DateTime? Start { get; set; }
-
-        public override DateTime? End { get; set; }
-
         public PeriodDTO()
         {
         }
