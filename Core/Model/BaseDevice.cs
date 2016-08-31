@@ -20,6 +20,7 @@ namespace Core.Model
 
         public BaseDevice(IDevice device)
         {
+            if (device == null) throw new ArgumentNullException("Device is null");
             Name = device.Name;
             Guid = device.Guid;
         }

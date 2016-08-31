@@ -19,6 +19,8 @@ namespace Core.Model
 
         protected BaseTemperature(ITemperature temperature)
         {
+            if(temperature == null) throw new ArgumentNullException("Temperature is null");
+
             Date = temperature.Date;
             Value = temperature.Value;
         }

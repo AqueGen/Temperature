@@ -39,6 +39,8 @@ namespace Services.Temperature.Providers
 
         public async Task AddTemperatures(int devideId, IEnumerable<ITemperature> temperatures)
         {
+            if (temperatures == null) throw new ArgumentNullException("Temperatures is null");
+
             Context.Temperatures.AddRange(
                 temperatures.Select(m => new Data.Store.Models.Temperature(m) {DeviceId = devideId}));
 

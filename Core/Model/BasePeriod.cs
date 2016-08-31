@@ -15,6 +15,7 @@ namespace Core.Model
 
         protected BasePeriod(IPeriod period)
         {
+            if (period == null) throw new ArgumentNullException("Period is null");
             Start = period.Start;
             End = period.End;
         }
